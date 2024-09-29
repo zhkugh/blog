@@ -1,0 +1,46 @@
+---
+title: Docker 镜像加速 🚀
+description: 使用加速域名减少镜像拉取的时间
+date: "2023-01-02"
+---
+
+### 为了加速镜像拉取，使用以下命令设置 **registry mirror**
+
+> 支持系统：Ubuntu 16.04+、Debian 8+、CentOS 7+
+> 
+> 官方加速域名：https://docker.zhkugh.top
+
+1. 将 Docker 的 Registry Mirrors 配置为加速域名
+
+   ```bash
+   #vim /etc/docker/daemon.json
+   
+   {
+     "registry-mirrors": ["https://docker.zhkugh.top"]
+   }
+   ```
+
+2. 重启 Docker 服务
+
+   ```bash
+   sudo systemctl restart docker
+   ```
+
+3. 通过加速域名拉取镜像
+
+   ```bash
+   # 拉取 library 镜像
+   docker pull docker.zhkugh.top/library/alpine:latest
+
+   # 拉取 coredns 镜像
+   docker pull docker.zhkugh.top/coredns/coredns:latest
+
+   # 拉取 MySQL 镜像
+   docker pull docker.zhkugh.top/library/mysql:8.0
+   ```
+
+4. 验证镜像加速效果
+
+   <Image  style={{borderRadius: '10px'}} src="/docker-pull.png" width="718" height="404" alt="Image" />
+
+   
